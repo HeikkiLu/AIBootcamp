@@ -1,0 +1,35 @@
+hor1 = board[0][0] + board[0][1] + board[0][2] + board[0][3]
+    hor2 = board[1][0] + board[1][1] + board[1][2] + board[1][3]
+    hor3 = board[2][0] + board[2][1] + board[2][2] + board[2][3]
+    hor4 = board[3][0] + board[3][1] + board[3][2] + board[3][3]
+
+    horyla = hor1 + hor2
+    horala = hor3 + hor4
+    
+    ver1 = board[0][0] + board[1][0] + board[2][0] + board[3][0]
+    ver2 = board[0][1] + board[1][1] + board[2][1] + board[3][1]
+    ver3 = board[0][2] + board[1][2] + board[2][2] + board[3][2]
+    ver4 = board[0][3] + board[1][3] + board[2][3] + board[3][3]
+
+    vervas = ver1 + ver2
+    veroik = ver3 + ver4
+    
+    rand = random.randint(1,2)
+    
+    if rand % 2 == 0:
+        print('Random')
+        return random.choice([UP, DOWN, LEFT, RIGHT])
+  
+    if vervas > veroik and horyla > horala:
+        if horyla > vervas:
+            return 0
+        else:
+            return 2
+    elif veroik > vervas and horala > horyla:
+        if horala > veroik:
+            return 1
+        else:
+            return 3
+    else:
+        print('Random')
+        return random.choice([UP,DOWN,LEFT,RIGHT])
