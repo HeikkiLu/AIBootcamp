@@ -8,24 +8,46 @@ import numpy as np
 # Description:			The logic of the AI to beat the game.
 
 UP, DOWN, LEFT, RIGHT = 0, 1, 2, 3
+lastmove = -1
+
 
 def find_best_move(board):
     bestmove = -1    
-	
+    global lastmove
+
 	# TODO:
 	# Build a heuristic agent on your own that is much better than the random agent.
 	# Your own agent don't have to beat the game.
-    sumy = np.sum(board, axis=0)
-    sumx = np.sum(board, axis=1)
-    print(board)
-    print(sumy)
-    print(sumx)
-    bestmove = find_best_move_random_agent(sumx, sumy)
+    
+    if lastmove == UP:
+        bestmove = DOWN
+    elif lastmove == LEFT:
+        bestmove = RIGHT
+    else:
+
+        bestmove = RIGHT
+
+        if not does_it_work(bestmove, board):
+            bestmove = DOWN
+            if not does_it_work(bestmove, board):
+                bestmove = UP
+                if not does_it_work(bestmove, board):
+                    bestmove = LEFT
+
+    lastmove = bestmove
     return bestmove
 
-def find_best_move_random_agent(sumx, sumy):
+def does_it_work(move, board):
+    new_board = execute_move(move, board)
+    if board_equals(new_board, board):
+        return False
+    else:
+        return True
 
-    if
+
+def find_best_move_random_agent():
+    return random.choice([UP, DOWN, LEFT, RIGHT])
+    
 
 def execute_move(move, board):
     """
